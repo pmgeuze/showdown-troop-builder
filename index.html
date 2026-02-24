@@ -540,27 +540,27 @@
              Edges / Abilities / Special – header + list
              ------------------------------------------------- -->
         <h5>Armour / Edges / Abilities / Special</h5>
-        <ul>
+        <!-- <ul> -->
           <li ng-repeat="armor in statBlock.armors">
-            <strong>{{ statBlock.getObjectFromJsonString(armor).name }}::</strong>
+            <strong>{{ statBlock.getObjectFromJsonString(armor).name }}: </strong>
             +{{ statBlock.getObjectFromJsonString(armor).armor }} Armour
           </li>  
           <li ng-repeat="edge in statBlock.edges">
-            {{ statBlock.getObjectFromJsonString(edge).name }}:
+            <strong>{{ statBlock.getObjectFromJsonString(edge).name }}: </strong>
             {{ statBlock.getObjectFromJsonString(edge).desc }}
           </li>
           <li ng-repeat="hindrance in statBlock.hindrances">
-            {{ statBlock.getObjectFromJsonString(hindrance).name }}:
+            <strong>{{ statBlock.getObjectFromJsonString(hindrance).name }}: </strong>
             {{ statBlock.getObjectFromJsonString(hindrance).desc }}
           </li>
           <li ng-repeat="special in statBlock.specialAbilities">
-            {{ statBlock.getObjectFromJsonString(special).name }}:
+            <strong>{{ statBlock.getObjectFromJsonString(special).name }}: </strong>
             {{ statBlock.getObjectFromJsonString(special).desc }}
           </li>
           <li ng-repeat="misc in statBlock.miscAbilities">
-            {{ statBlock.getObjectFromJsonString(misc).name }}
+            <strong>{{ statBlock.getObjectFromJsonString(misc).name }} </strong>
           </li>
-        </ul>
+        <!-- </ul> -->
 
         <!-- End marker -->
         <hr>
