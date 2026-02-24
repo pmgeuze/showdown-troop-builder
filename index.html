@@ -524,7 +524,7 @@
                 </span>
               </td>
               <td>
-                R.o.F: {{ statBlock.getObjectFromJsonString(rangedWeapon).rof }}
+                RoF: {{ statBlock.getObjectFromJsonString(rangedWeapon).rof }}
                 <span ng-show="statBlock.getObjectFromJsonString(rangedWeapon).oneShot">
                   One Shot
                 </span>
@@ -539,8 +539,12 @@
         <!-- -------------------------------------------------
              Edges / Abilities / Special – header + list
              ------------------------------------------------- -->
-        <h5>##### Edges / Abilities / Special</h5>
+        <h5>Armour / Edges / Abilities / Special</h5>
         <ul>
+          <li ng-repeat="armor in statBlock.armors">
+            <strong></strong>{{ statBlock.getObjectFromJsonString(armor).name }}:</strong>
+            +{{ statBlock.getObjectFromJsonString(armor).armor }} Armour
+          </li>  
           <li ng-repeat="edge in statBlock.edges">
             {{ statBlock.getObjectFromJsonString(edge).name }}:
             {{ statBlock.getObjectFromJsonString(edge).desc }}
@@ -558,20 +562,8 @@
           </li>
         </ul>
 
-        <!-- -------------------------------------------------
-             Armor – simple list
-             ------------------------------------------------- -->
-        <p><strong>Armor:</strong></p>
-        <ul>
-          <li ng-repeat="armor in statBlock.armors">
-            {{ statBlock.getObjectFromJsonString(armor).name }}
-            +{{ statBlock.getObjectFromJsonString(armor).armor }}A
-          </li>
-        </ul>
-
         <!-- End marker -->
         <hr>
-        <p>----</p>
 
       </div> <!-- /.modal-body -->
     </div> <!-- /.modal-content -->
