@@ -1,10 +1,12 @@
 var HINDRANCES = [
 	{name: 'All Thumbs', cost: -1, desc: '-2 Repair; a trait roll of 1 when using any sort of device causes a malfunction (or loss of action if no malfunction result is specified)'},
+	{name: 'Amorous', cost: -1, desc: '−2 penalty to attacks against any character with the Attractive Edge (−4 if Very Attractive).'},
 	{name: 'Anemic', cost: -1, desc: '-2 Vigor to resist sickness, disease, poison, environment'},
 	{name: 'Bad Eyes', cost: -1, desc: '-2 to attack or notice something more than 5" distant'},
 	{name: 'Bad Luck', cost: -1, desc: 'The Wild Card starts play with only one dedicated benny rather than two'},
 	{name: 'Blind', cost: -1, desc: '-6 to all actions that rely on vision'},
 	{name: 'Doubting Thomas', cost: -1, desc: 'Character does not believe in the supernatural; -2 to Fear tests'},
+	{name: 'Glass Jaw', cost: -1, desc: '-2 peanlty to Soak rolls.'},
 	{name: 'Lame', cost: -1, desc: '-2 Pace and running die is a d4', affectedStat: 'pace', affectValue: -2},
 	{name: 'Obese', cost: -1, desc: '+1 Toughness, -1 Pace, d4 running die', affectedStat: 'pace', affectValue: -1},
 	{name: 'One Arm', cost: -1, desc: '-4 to tasks requiring two arms, such as Fighting'},
@@ -14,4 +16,3 @@ var HINDRANCES = [
 	{name: 'Small', cost: -1, desc: '-1 Toughness', affectedStat: 'toughness', affectValue: -1},
 	{name: 'Yellow', cost: -1, desc: 'The character is cowardly and suffers -2 to Fear checks'}
 ];
-
