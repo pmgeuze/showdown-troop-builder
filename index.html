@@ -25,9 +25,9 @@
     <script src="js/shared/jquery-1.11.1.min.js"></script>
     <script src="js/shared/bootstrap.min.js"></script>
     <!--
-	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
-	-->
+    <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+    -->
     <script src="js/shared/angular.min.js"></script>
     <script src="js/shared/polyfill.js"></script>
 
@@ -368,9 +368,9 @@
             </div>
             <div class="modal-body">
                 <ul>
-				    <li ng-repeat="retrievedUnit in unitListing"><a href="#" ng-click="loadUnit(retrievedUnit.datakeyName)">{{retrievedUnit.name}}</a>
+                    <li ng-repeat="retrievedUnit in unitListing"><a href="#" ng-click="loadUnit(retrievedUnit.datakeyName)">{{retrievedUnit.name}}</a>
                         <span class="deleteMinibutton badge glyphicon glyphicon-remove" aria-hidden="true" ng-click="deleteUnit(retrievedUnit.datakeyName)" > </span>
-				    </li>
+                    </li>
                 </ul>
             <div class="modal-footer">
                 <div class="pull-right hidden-print">
@@ -383,185 +383,207 @@
 </div>
 
 
-<!-- Print Modal -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ------------------------------Print Modal------------------------------ -->
 <div class="modal fade" id="printModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h4>Name: {{ statBlock.name }} 
-                  <span  ng-show="statBlock.wildCard" ng-class="'glyphicon glyphicon-' + this.wcGlyphiconSet[this.statBlock.wildCardIconIndex]" aria-hidden="true" id="wc-glyphicon-print"> </span>
+                <h4>Name: {{ statBlock.name }}
+                    <span ng-show="statBlock.wildCard"
+                          ng-class="'glyphicon glyphicon-' + this.wcGlyphiconSet[this.statBlock.wildCardIconIndex]"
+                          aria-hidden="true"
+                          id="wc-glyphicon-print"></span>
                 </h4>
-
             </div>
+
             <div class="modal-body">
 
+                <!-- Core stats table (unchanged) -->
                 <table class="table table-condense table-bordered">
                     <thead>
-                    <tr>
-                        <th>Agility</th>
-                        <th>Smarts</th>
-                        <th>Spirit</th>
-                        <th>Strength</th>
-                        <th>Vigor</th>
-                        <th>Pace</th>
-                        <th>Parry</th>
-                        <th>Toughness</th>
-                        <th>Cost</th>
-                    </tr>
+                        <tr>
+                            <th>Agility</th><th>Smarts</th><th>Spirit</th><th>Strength</th>
+                            <th>Vigor</th><th>Pace</th><th>Parry</th><th>Toughness</th><th>Cost</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>d{{ statBlock.agility.value }}</td>
-                        <td>d{{ statBlock.smarts.value }}</td>
-                        <td>d{{ statBlock.spirit.value }}</td>
-                        <td>d{{ statBlock.strength.value }} <span ng-show="statBlock.strengthBonus">+ {{ statBlock.strengthBonus }}</span></td>
-                        <td>d{{ statBlock.vigor.value }}</td>
-                        <td>{{ statBlock.paceTotal() }}</td>
-                        <td>{{ statBlock.parry() }}</td>
-                        <td>{{ statBlock.toughnessTotal() }} ({{ statBlock.armor() }})</td>
-                        <td>{{ statBlock.roundedCost() }}</td>
-                    </tr>
+                        <tr>
+                            <td>d{{ statBlock.agility.value }}</td>
+                            <td>d{{ statBlock.smarts.value }}</td>
+                            <td>d{{ statBlock.spirit.value }}</td>
+                            <td>d{{ statBlock.strength.value }}
+                                <span ng-show="statBlock.strengthBonus">+ {{ statBlock.strengthBonus }}</span>
+                            </td>
+                            <td>d{{ statBlock.vigor.value }}</td>
+                            <td>{{ statBlock.paceTotal() }}</td>
+                            <td>{{ statBlock.parry() }}</td>
+                            <td>{{ statBlock.toughnessTotal() }} ({{ statBlock.armor() }})</td>
+                            <td>{{ statBlock.roundedCost() }}</td>
+                        </tr>
                     </tbody>
                 </table>
 
+                <!-- Two‑column layout for the remaining sections -->
                 <table class="table table-condense">
                     <tr>
+                        <!-- LEFT COLUMN – Skills (reformatted) -->
                         <td style="border-top:none;" width="25%">
                             <table class="table table-condense table-striped table-bordered">
                                 <thead>
-                                <tr>
-                                    <th>Skills</th>
-                                </tr>
+                                    <tr>
+                                        <!-- Dynamically create a column for each skill name -->
+                                        <th ng-repeat="skill in statBlock.skills | filter:itemHasValue()">
+                                            {{ statBlock.getObjectFromJsonString(skill).name }}
+                                        </th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="skill in statBlock.skills | filter:itemHasValue()">
-                                    <td>
-                                        {{ statBlock.getObjectFromJsonString(skill).name }}: d{{ statBlock.getObjectFromJsonString(skill).value }}
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <!-- Corresponding skill values -->
+                                        <td ng-repeat="skill in statBlock.skills | filter:itemHasValue()">
+                                            d{{ statBlock.getObjectFromJsonString(skill).value }}
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </td>
+
+                        <!-- RIGHT COLUMN – Edges / Abilities / Special (unchanged) -->
                         <td style="border-top:none;" width="75%">
                             <table class="table table-condense table-striped table-bordered">
                                 <thead>
-                                <tr>
-                                    <th>Edges / Abilities / Special</th>
-                                </tr>
+                                    <tr><th>Edges / Abilities / Special</th></tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="edge in statBlock.edges">
-                                    <td>
-                                        {{ statBlock.getObjectFromJsonString(edge).name }}: {{ statBlock.getObjectFromJsonString(edge).desc }}
-                                    </td>
-                                </tr>
-                                <tr ng-repeat="hindrance in statBlock.hindrances">
-                                    <td>
-                                        {{ statBlock.getObjectFromJsonString(hindrance).name }}: {{ statBlock.getObjectFromJsonString(hindrance).desc }}
-                                    </td>
-                                </tr>
-                                <tr ng-repeat="special in statBlock.specialAbilities">
-                                    <td>
-                                        {{ statBlock.getObjectFromJsonString(special).name }}: {{ statBlock.getObjectFromJsonString(special).desc }}
-                                    </td>
-                                </tr>
-                                <tr ng-repeat="misc in statBlock.miscAbilities">
-                                    <td>
-                                        {{ statBlock.getObjectFromJsonString(misc).name }}
-                                    </td>
-                                </tr>
+                                    <tr ng-repeat="edge in statBlock.edges">
+                                        <td>
+                                            {{ statBlock.getObjectFromJsonString(edge).name }}:
+                                            {{ statBlock.getObjectFromJsonString(edge).desc }}
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="hindrance in statBlock.hindrances">
+                                        <td>
+                                            {{ statBlock.getObjectFromJsonString(hindrance).name }}:
+                                            {{ statBlock.getObjectFromJsonString(hindrance).desc }}
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="special in statBlock.specialAbilities">
+                                        <td>
+                                            {{ statBlock.getObjectFromJsonString(special).name }}:
+                                            {{ statBlock.getObjectFromJsonString(special).desc }}
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat="misc in statBlock.miscAbilities">
+                                        <td>{{ statBlock.getObjectFromJsonString(misc).name }}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </td>
                     </tr>
+
                     <tr>
+                        <!-- LEFT COLUMN – Armor (reformatted) -->
                         <td style="border-top:none;" width="25%">
                             <table class="table table-condense table-striped table-bordered">
                                 <thead>
-                                <tr>
-                                    <th>Armor</th>
-                                </tr>
+                                    <tr>
+                                        <th>Armor</th>   <!-- Header cell placed in first column/row -->
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="armor in statBlock.armors">
-                                    <td>
-                                        {{ statBlock.getObjectFromJsonString(armor).name }}
-                                        +{{ statBlock.getObjectFromJsonString(armor).armor }}A
-                                    </td>
-                                </tr>
+                                    <tr ng-repeat="armor in statBlock.armors">
+                                        <td>
+                                            {{ statBlock.getObjectFromJsonString(armor).name }}
+                                            +{{ statBlock.getObjectFromJsonString(armor).armor }}A
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </td>
+
+                        <!-- RIGHT COLUMN – Weapons (unchanged) -->
                         <td style="border-top:none;" width="75%">
                             <table class="table table-condense table-striped table-bordered">
                                 <thead>
-                                <tr>
-                                    <th>Weapon</th>
-                                    <th>Damage</th>
-                                    <th>Range</th>
-                                    <th>AP</th>
-                                    <th>Notes</th>
-                                </tr>
+                                    <tr>
+                                        <th>Weapon</th><th>Damage</th><th>Range</th><th>AP</th><th>Notes</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="handWeapon in statBlock.handWeapons">
-                                    <td>
-                                        {{ statBlock.getObjectFromJsonString(handWeapon).name }}
-                                    </td>
-                                    <td>
-                                        {{ statBlock.getObjectFromJsonString(handWeapon).damage }}
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <span ng-show="statBlock.getObjectFromJsonString(handWeapon).ap">
-                                            {{ statBlock.getObjectFromJsonString(handWeapon).ap }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span ng-show="statBlock.getObjectFromJsonString(handWeapon).reach">
-                                            Reach +{{ statBlock.getObjectFromJsonString(handWeapon).reach }}
-                                        </span>
-                                        <span ng-show="statBlock.getObjectFromJsonString(handWeapon).parry">
-                                            Parry {{ statBlock.getObjectFromJsonString(handWeapon).parry }}
-                                        </span>
-                                        <span ng-show="statBlock.getObjectFromJsonString(handWeapon).twoHanded">
-                                            Two Handed
-                                        </span>
-                                        {{ statBlock.getObjectFromJsonString(handWeapon).notes }}
-                                    </td>
-                                </tr>
-                                <tr ng-repeat="rangedWeapon in statBlock.rangedWeapons">
-                                    <td>
-                                        {{ statBlock.getObjectFromJsonString(rangedWeapon).name }}
-                                    </td>
-                                    <td>
-                                        {{ statBlock.getObjectFromJsonString(rangedWeapon).damage }}
-                                    </td>
-                                    <td>
-                                        {{ statBlock.getObjectFromJsonString(rangedWeapon).range }}
-                                    </td>
-                                    <td>
-                                        <span ng-show="statBlock.getObjectFromJsonString(rangedWeapon).ap">
-                                            {{ statBlock.getObjectFromJsonString(rangedWeapon).ap }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        R.o.F: {{ statBlock.getObjectFromJsonString(rangedWeapon).rof }}
-                                        <span ng-show="statBlock.getObjectFromJsonString(rangedWeapon).oneShot">
-                                            One Shot
-                                        </span>
-                                        <span ng-show="statBlock.getObjectFromJsonString(rangedWeapon).special">
-                                            {{ statBlock.getObjectFromJsonString(rangedWeapon).special }}
-                                        </span>
-                                    </td>
+                                    <!-- Hand‑to‑hand weapons -->
+                                    <tr ng-repeat="handWeapon in statBlock.handWeapons">
+                                        <td>{{ statBlock.getObjectFromJsonString(handWeapon).name }}</td>
+                                        <td>{{ statBlock.getObjectFromJsonString(handWeapon).damage }}</td>
+                                        <td></td>
+                                        <td>
+                                            <span ng-show="statBlock.getObjectFromJsonString(handWeapon).ap">
+                                                {{ statBlock.getObjectFromJsonString(handWeapon).ap }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span ng-show="statBlock.getObjectFromJsonString(handWeapon).reach">
+                                                Reach +{{ statBlock.getObjectFromJsonString(handWeapon).reach }}
+                                            </span>
+                                            <span ng-show="statBlock.getObjectFromJsonString(handWeapon).parry">
+                                                Parry {{ statBlock.getObjectFromJsonString(handWeapon).parry }}
+                                            </span>
+                                            <span ng-show="statBlock.getObjectFromJsonString(handWeapon).twoHanded">
+                                                Two Handed
+                                            </span>
+                                            {{ statBlock.getObjectFromJsonString(handWeapon).notes }}
+                                        </td>
+                                    </tr>
 
-                                </tr>
+                                    <!-- Ranged weapons -->
+                                    <tr ng-repeat="rangedWeapon in statBlock.rangedWeapons">
+                                        <td>{{ statBlock.getObjectFromJsonString(rangedWeapon).name }}</td>
+                                        <td>{{ statBlock.getObjectFromJsonString(rangedWeapon).damage }}</td>
+                                        <td>{{ statBlock.getObjectFromJsonString(rangedWeapon).range }}</td>
+                                        <td>
+                                            <span ng-show="statBlock.getObjectFromJsonString(rangedWeapon).ap">
+                                                {{ statBlock.getObjectFromJsonString(rangedWeapon).ap }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            R.o.F: {{ statBlock.getObjectFromJsonString(rangedWeapon).rof }}
+                                            <span ng-show="statBlock.getObjectFromJsonString(rangedWeapon).oneShot">
+                                                One Shot
+                                            </span>
+                                            <span ng-show="statBlock.getObjectFromJsonString(rangedWeapon).special">
+                                                {{ statBlock.getObjectFromJsonString(rangedWeapon).special }}
+                                            </span>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </td>
                     </tr>
                 </table>
             </div>
+        </div>
+    </div>
+</div>
+<!-- ------------------------------End Print Modal------------------------------ -->
+
 
             <div class="modal-footer">
                 <div class="pull-right hidden-print">
