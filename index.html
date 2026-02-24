@@ -542,7 +542,7 @@
         <h5>Armour / Edges / Abilities / Special</h5>
         <ul>
           <li ng-repeat="armor in statBlock.armors">
-            <strong>{{ statBlock.getObjectFromJsonString(armor).name }}:</strong>
+            <strong>{{ statBlock.getObjectFromJsonString(armor).name }}::</strong>
             +{{ statBlock.getObjectFromJsonString(armor).armor }} Armour
           </li>  
           <li ng-repeat="edge in statBlock.edges">
