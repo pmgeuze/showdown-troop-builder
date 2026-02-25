@@ -17,6 +17,7 @@ var HAND_WEAPONS = [
  {name: 'Knife, Clasp', damage: 'Str+d4', ap: 0, reach: 0, parry: '', twoHanded: false, cost: 3, notes: 'A large folding knife, opening takes 1 action.'},
  {name: 'Lance', damage: 'Str+d8', ap: 0, reach: 2, parry: '', twoHanded: true, cost: 10, notes: 'AP 2 when charging.'},
  {name: 'Lance, Flaming', damage: 'Str+d8+2', ap: 0, reach: 2, parry: '', twoHanded: true, cost: 16, notes: 'AP 2 when charging, roll to see if target catches fire ???'},
+ {name: 'Large Club', damage: 'Str+d5', ap: 0, reach: 0, parry: '', twoHanded: false, cost: 6},
  {name: 'Lightning Sword', damage: 'Str+d8', ap: 0, reach: 0, parry: '', twoHanded: false, cost: 15, notes: 'On a successful Shooting roll, can fire 2d6 lightning bolts with Range of 12/24/48'},
  {name: 'Rapier', damage: 'Str+d4', ap: 0, reach: 0, parry: '+1', twoHanded: false, cost: 6},
  {name: 'Scimitar', damage: 'Str+d8', ap: 0, reach: 0, parry: '', twoHanded: false, cost: 9},
