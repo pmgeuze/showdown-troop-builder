@@ -5,6 +5,8 @@ var EDGES = [
     {name: 'Ambidextrous', cost: 6, desc: 'Ignore –2 penalty for using off-hand'},
     {name: 'Arcane Background', cost: 10, desc: 'Allows access to supernatural powers (powers purchased separately)'},
     {name: 'Arcane Resistance', cost: 3, desc: 'Armor 2 vs. magic, +2 to resist powers'},
+    {name: 'Attractive', cost: 0, desc: 'It’s no secret that beautiful people have an easier time getting their way in life.'},
+    {name: 'Very Attractive', cost: 0, desc: 'It’s no secret that beautiful people have an easier time getting their way in life, and this character is drop dead gorgeous.'},
     {name: 'Beast Bond', cost: 3, desc: 'Character may spend bennies for animals he controls'},
     {name: 'Beast Master', cost: 0, desc: 'You gain an animal companion, paid for separately'},
     {name: 'Berserk', cost: 3, desc: 'Check the rules!'},
